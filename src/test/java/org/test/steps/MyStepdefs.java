@@ -17,11 +17,6 @@ public class MyStepdefs {
         log.info(String.format("Hello World : %s : %s" , input1 ,input2));
     }
 
-    @Given("Hello World \\{Name} \\{City}")
-    public void helloWorldNameCity(String input1,String input2) {
-        log.info(String.format("Hello World : %s : %s" , input1 ,input2));
-    }
-
     @And("Go Now")
     public void goNow() {
         log.info("go now");
