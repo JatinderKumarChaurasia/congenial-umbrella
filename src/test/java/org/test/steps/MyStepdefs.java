@@ -1,6 +1,8 @@
 package org.test.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,5 +20,30 @@ public class MyStepdefs {
     @Given("Hello World \\{Name} \\{City}")
     public void helloWorldNameCity(String input1,String input2) {
         log.info(String.format("Hello World : %s : %s" , input1 ,input2));
+    }
+
+    @And("Go Now")
+    public void goNow() {
+        log.info("go now");
+    }
+
+    @Then("we are good")
+    public void weAreGood() {
+        log.info("we are good");
+    }
+
+    @Given("Hello World {int}")
+    public void helloWorld(int arg0) {
+        log.info("hello world 2");
+    }
+
+    @And("Go Now Two")
+    public void goNowTwo() {
+        log.info("go now two");
+    }
+
+    @Then("we are good two")
+    public void weAreGoodTwo() {
+        log.info("we are good two");
     }
 }
