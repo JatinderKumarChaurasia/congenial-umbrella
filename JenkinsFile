@@ -12,7 +12,7 @@ pipeline {
                     sh 'gradle --version'
                     sh 'ls -ltr'
                     sh 'gradle build'
-                    sh './gradlew cucumber'
+                    sh "./gradlew -Dcucumber.filter.tags='@first' cucumber"
                 }
             }
         }
