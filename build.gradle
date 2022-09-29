@@ -36,6 +36,7 @@ configurations {
 }
 
 task cucumber() {
+    println(project.gradle.startParameter.systemPropertiesArgs)
     println("running cucumber task")
     dependsOn assemble,testClasses
     doLast {
