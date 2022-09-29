@@ -11,6 +11,7 @@ pipeline {
                     sh 'java --version'
                     sh 'gradle --version'
                     sh 'ls -ltr'
+                    sh './gradlew cucumber'
                 }
             }
         }
