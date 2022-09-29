@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class MyStepdefs {
     private static final Logger log = LoggerFactory.getLogger(MyStepdefs.class);
     public MyStepdefs() {
-        log.info(String.format("running: %s",MyStepdefs.class.toString()));
+        log.info(String.format("running: %s", MyStepdefs.class));
     }
 
     @Given("Hello World")
@@ -34,7 +34,7 @@ public class MyStepdefs {
 
     @Given("Hello World {int}")
     public void helloWorld(int arg0) {
-        log.info("hello world 2");
+        log.info(String.format("hello world 2 %s",arg0));
     }
 
     @And("Go Now Two")
