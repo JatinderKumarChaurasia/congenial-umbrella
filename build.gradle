@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+description 'Hello NFT Testing'
+group 'org.test'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'io.cucumber:cucumber-java:7.8.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.8.0'
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+    testImplementation 'org.apache.logging.log4j:log4j-to-slf4j:2.17.1'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.9.0'
+    testImplementation 'me.jvt.cucumber:reporting-plugin:7.3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    println("running cucumber task")
+    dependsOn assemble,testClasses
+    doLast {
+        javaexec {
+            mainClass = 'io.cucumber.core.cli.Main'
+            classpath = configurations.cucumberRuntime + sourceSets.test.runtimeClasspath +sourceSets.main.runtimeClasspath
+            args = ['--plugin','pretty', '--plugin','json:reports/my_report.json','--glue','org.test.steps','src/test/resources/features']
+        }
+    }
+}

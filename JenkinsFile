@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    tools {
+        jdk '11'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    echo '${JAVA_HOME}'
+                    sh 'java --version'
+                    sh 'gradle --version'
+                    sh 'ls -ltr'
+                }
+            }
+        }
+    }
+}
