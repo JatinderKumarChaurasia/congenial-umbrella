@@ -13,8 +13,8 @@ public class MyStepdefs {
     }
 
     @Given("Hello World")
-    public void hello_world(String input1, String input2) {
-        log.info(String.format("Hello World : %s : %s" , input1 ,input2));
+    public void hello_world() {
+        log.info("Hello World : first" );
     }
 
     @And("Go Now")
