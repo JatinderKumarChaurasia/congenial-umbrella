@@ -38,12 +38,19 @@ configurations {
 task cucumber() {
     println(project.gradle.startParameter.systemPropertiesArgs)
     println("running cucumber task")
+    def tempArgs = ['--plugin','pretty', '--plugin','json:reports/my_report.json','--glue','org.test.steps','src/test/resources/features']
     dependsOn assemble,testClasses
+    project.gradle.startParameter.systemPropertiesArgs.forEach((key,value) -> {
+        println(key)
+        println(value)
+        tempArgs.add(String.format("--%s",key))
+        tempArgs.add(String.format("%s",value))
+    })
     doLast {
         javaexec {
             mainClass = 'io.cucumber.core.cli.Main'
             classpath = configurations.cucumberRuntime + sourceSets.test.runtimeClasspath +sourceSets.main.runtimeClasspath
-            args = ['--plugin','pretty', '--plugin','json:reports/my_report.json','--glue','org.test.steps','src/test/resources/features']
+            args = tempArgs
         }
     }
 }
